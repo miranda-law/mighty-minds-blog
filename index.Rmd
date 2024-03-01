@@ -1,0 +1,263 @@
+---
+title: "Mighty Minds"
+author: "Miranda Law and Ellie DeCarlo"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::downcute:
+    highlight: "kate"
+---
+
+<!-- 
+ToC
+# Purpose: Ellie
+## Covid-19 Disclaimer: Ellie
+
+# Mental Health over the Years: Global view: Ellie
+## Global Prevalence: Miranda
+## Global Prevalence by Sex: Miranda
+
+# Relevant Countries: Ellie
+### Prevalence: Ellie
+### Sex: Miranda
+### Age: Miranda
+### Table: Ellie
+## Important Events: Ellie
+
+# Summary: Ellie
+# 2022 data vs. 2019
+# Mental Health Resources Link: Ellie
+
+# Resources: Ellie, Miranda
+-->
+
+```{r setup, include = FALSE}
+# Set code chunk defaults 
+# Consider adding `message = FALSE` option
+knitr::opts_chunk$set(echo = FALSE) 
+                      
+# Set R environment options
+options(knitr.kable.NA = '')
+
+# Load packages
+library(tidyverse)
+library(DT)
+load("data/world-data.RData")
+load("data/blog-visuals.RData")
+```
+
+# Purpose
+
+This blog aims to provide information about the effect of mental illness and its prevalence globally. The blog address questions about country, continent, age, and gender, and how each of these factors can play in to the proportion of people suffering with mental illness. The goal is to show which groups of people, specifically by country, age, and gender, are at the highest risk of mental illness to find which groups need the most support from those who are able to help. The data used within this blog is from the [Our World in Data website](https://ourworldindata.org/) from the Global Burden of Disease and includes mental health information from 1990 to 2019.
+
+## Covid-19 Disclaimer
+
+Since 2020, Covid-19 has taken over the lives of people everywhere. From quarantining in homes and having no social contact, to constant testing, the mask frenzy, and difficulties adjusting to this "new life," it is no surprise that Covid-19 has affected the mental health of the entire global population. The prevalence of depression alone has increased 7% after the outbreak [(Torales 2020)](https://journals.sagepub.com/doi/full/10.1177/0020764020915212). Because the data used ranges from 1990-2019, the largest limitation in our data is that Covid-19 is not factored in  the datasets and therefore the numbers used below might not be accurate to today's date. 
+
+# Mental Health over the Years: Global view
+
+```{r, fig.cap="The World", out.width="75%", fig.align="center"}
+knitr::include_graphics("https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif")
+```
+
+
+## Global Prevalence of Depression {.tabset .tabset-fade .tabset-pills}
+
+### Map
+
+We show the global prevalence of depression from 1990 to 2019 in the map below. Through this visual, we can see that the percentage of people diagnosed with depression has increased over the years. 
+
+```{r global-prevalence}
+# show figure
+prev_number_map
+```
+
+### Table
+
+```{r global-prevalence-dt}
+datatable(prev_number_map_df, 
+          filter = 'top',
+          options = list(pageLength = 10))
+```
+
+## Global Prevalence of Depression by Sex {.tabset .tabset-fade .tabset-pills}
+
+We have also decided to take a closer look the global prevalence of depression from 1990 to 2019 by sex in the map below. Through this visual, more females are diagnosed with depression compared to males over the years. We also see that there is an increase of prevalence across both groups over the years.
+
+
+### Male
+
+```{r global-prevalence-male}
+# show figure
+prev_male_map
+```
+
+### Female
+
+```{r global-prevalence-female}
+# show figure
+prev_female_map
+```
+
+### Table
+
+```{r global-prevalence-sex-dt}
+datatable(prev_sex, 
+          filter = 'top',
+          options = list(pageLength = 10))
+```
+
+
+# Relevant Countries 
+
+We decided to take a closer look at the increase of mental illness prevalence in China, the U.S., India, Pakistan, and Brazil. India had the overall highest increase in mental illness prevalence, and the other countries followed in their respective order. The numbers shown are the number of people who have reportedly been diagnosed with a mental illness, in millions.
+
+## {.tabset .tabset-fade .tabset-pills}
+
+### Prevalence
+
+```{r relevant-countries-dygraph}
+# show figure
+relevant_dygraph
+```
+
+### Sex
+
+```{r relevant-sex, warning=FALSE}
+# show figure
+relevant_sex_bar
+```
+
+### Age
+
+```{r relevant-age, warning=FALSE}
+# show figure
+relevant_age_bar
+```
+
+### Table
+
+```{r relevant-dt}
+datatable(relevant, 
+          filter = 'top',
+          options = list(pageLength = 10),
+          caption = htmltools::tags$caption(
+            style = 'caption-side: top; text-align: center;',
+            htmltools::em('This table contains the prevalence of depression by millions')))
+```
+
+## Important Events 
+
+<!-- Begin column 1 environment -->
+:::::: {style="display: flex; font-size: large;"}
+
+<!-- Create a column -->
+::: {}
+<!-- Content column 1 -->
+China:
+
+* 2003: Sars virus outbreak, strict quarantine to stop the spread.
+* 2005: Explosion at a chemical plant poisoned a river in China, cutting off water. supply to millions of citizens.
+* 2008: Anti-China protests escalate into the worst violence Tibet has seen in 20 years.
+
+Pakistan: 
+
+* 1994: Government issued new taxes causing the people to revolt and diminish government popularity.
+* 2001-2005: Government launched campaigns against terrorists and extremists.
+* 2010: Extensive flooding throughout the country killing 1,600+ people.
+* 2011-2019: Extensive violence due to bombers, extremists, terrorist attacks, etc.
+
+:::
+
+<!-- Create another column (this one is just adding horizontal space to separate content) -->
+::: {}
+<div class="horizontalgap" style="width:60px"></div>
+:::
+
+<!-- Create another column -->
+::: {}
+
+<!-- Content Column 2 -->
+India:
+
+* 1999: War with Pakistan-backed forced.
+* 2004: Tsunami hit the east coast of the country.
+
+Brazil: 
+
+* 1992: Carandiru massacre (a major human rights violation).
+* 1990-2019: many, many massacres of different scales, all inciting fear among citizens.
+* 2016: Hundreds of thousands of people protest corruption and denounce government.
+
+United States: 
+
+* 1999: President Clinton was impeached.
+* 1999: Shooting at Columbine.
+* 2001: attack on the World Trade Center.
+* 2007: Virginia Tech Shooting.
+* 2012: Sandy Hook Shooting.
+
+:::
+::::::
+
+# Summary
+
+Throughout this blog, we have found that mental illness has greatly increased throughout the years, with females having a significantly higher prevalence than males. Brazil, China, Pakistan, India, and the United States have the highest proportion of citizens with mental illnesses, to which can be attributed to the many wars and traumatic event that have taken place within those countries in the last 20 years.
+
+We found that globally, those in the older age bracket (50+) are more likely to suffer from mental illness, yet in the United States, the most at risk age group is 15-49 year olds.
+
+# 2022 data vs. 2019
+
+In the first year of the COVID-19 pandemic, global prevalence of anxiety and depression increased by 25%, according to the World Health Organization. Young people, mostly college aged students, and women were impacted the most. Therefore, since the Covid-19 pandemic hit the world, mental illness prevalence has drastically increased and there are not enough resources available to help all those in need. We hope that through our blog, we were able to raise awareness, and below you can find mental health resources if you or someone you know is struggling. 
+
+# Mental Health Resources Links
+
+* SAMHSA National Helpline: a free, confidential, 24/7, 365-day-a-year treatment referral and information service for individuals/families facing mental and/or substance use disorders. 
+
+  + Call at 1-800-662-HELP
+
+* Suicide Prevention Lifeline at 1-800-273-TALK(8255)
+
+* [Mental Health First Aid:](https://www.mentalhealthfirstaid.org/mental-health-resources/) a great source for any help and information for anyone facing mental and/or substance use disorders, including various helplines. 
+
+# Resources!!!!
+
+<!-- Websites -->
+  
+RPubs by RStudio, "Dplyr, ggplot2 and dygraph to explore the baby names in the U.S," **_[available here](https://rpubs.com/tkvit/228141)_**
+
+BBC News, "China profile - Timeline," **_[available here](https://www.bbc.com/news/world-asia-pacific-13017882)_**
+
+Wikipedia, "Timeline of Pakistani history (1947–present)," available at **_[available here](https://en.wikipedia.org/wiki/Timeline_of_Pakistani_history_(1947%E2%80%93present)#1990%E2%80%931999)_**
+
+Wikipedia, "Timeline of Brazilian History," **_[available here](https://en.wikipedia.org/wiki/Timeline_of_Brazilian_history#20th_century)_**
+
+Wikipedia, "Timeline of Pakistani history (1947–present)," **_[available here](https://en.wikipedia.org/wiki/Timeline_of_Pakistani_history_(1947%E2%80%93present)#1990%E2%80%931999)_**
+
+Wikipedia, "Timeline of Brazilian History," **_[available here](https://en.wikipedia.org/wiki/Timeline_of_Brazilian_history#20th_century)_**
+
+State of the Union, "Timeline of United States history (1990-present)," **_[available here](http://stateoftheunion.onetwothree.net/timelines/Timeline_US_hist_1990-pres.html)_**
+
+Journal article: [(Torales 2020)](https://journals.sagepub.com/doi/full/10.1177/0020764020915212) covid info
+
+World Health Organization, "COVID-19 pandemic triggers 25% increase in prevalence of anxiety and depression worldwide," **_[available here](https://www.who.int/news/item/02-03-2022-covid-19-pandemic-triggers-25-increase-in-prevalence-of-anxiety-and-depression-worldwide#:~:text=Wake%2Dup%20call%20to%20all,mental%20health%20services%20and%20support&text=In%20the%20first%20year%20of,Health%20Organization%20(WHO)%20today.)_**
+
+
+<!-- plotly package-->
+C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman and Hall/CRC Florida, 2020.
+
+<!-- janitor package-->
+Firke S (2021). _janitor: Simple Tools for Examining and Cleaning Dirty Data_. R package version 2.1.0, <https://CRAN.R-project.org/package=janitor>.
+
+Insight Guides, "India history and timeline," **_[available here](https://www.insightguides.com/destinations/asia-pacific/india/historical-highlights)_**
+
+<!-- dygraphs package-->
+Vanderkam D, Allaire J, Owen J, Gromer D, Thieurmel B (2018). _dygraphs: Interface to 'Dygraphs' Interactive Time Series Charting Library_. R package version 1.1.1.6, <https://CRAN.R-project.org/package=dygraphs>.
+
+<!-- tidyverse package-->
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, Françoi R, Grolemun G, Haye A, Henr L, Heste J, Kuh M, Pederse TL, Mille E, Bach SM, Müll K, Oo ,J, Robins, D, Seid ,DP, Spi ,V, Takahas ,K, Vaugh ,D, Wil ,C, W ,K, Yutani ,H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+
+<!-- dplyr package-->
+Wickham H, Francois R, Henry L, Muller K (2022). _dplyr: A Grammar of Data Manipulation_. R package version 1.0.9, <https://CRAN.R-project.org/package=dplyr>.
+
+<!-- DT package-->
+Xie Y, Cheng J, Tan X (2022). "DT: A Wrapper of the JavaScript Library 'DataTables'," R package version 0.24, available at <https://CRAN.R-project.org/package=DT>.
